@@ -100,8 +100,11 @@ def generate_with_gemini(prompt: str):
             contents=prompt,
         )
         return response.text, None
-    except Exception as e:
-        return None, f"AI generation unavailable ({type(e).__name__}). Showing retrieved source passages instead."
+   
+except Exception as e:
+    print(f"Gemini error: {type(e).__name__}: {e}")
+    return None, f"AI generation unavailable ({type(e).__name__}). Showing retrieved source passages instead."
+
 
 def build_context(results):
     return "\n\n".join(
