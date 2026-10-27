@@ -308,3 +308,27 @@ else:
 
 st.divider()
 st.caption("Built as an independent student project. Inspired by the general idea of accessible study tools; no third-party branding or proprietary code is used.")
+
+
+
+if st.button("Test Gemini connection"):
+    api_key = get_api_key()
+
+    if not api_key:
+        st.error("GEMINI_API_KEY is missing.")
+    else:
+        try:
+            from google import genai
+
+            client = genai.Client(api_key=api_key)
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents="Reply with exactly: Gemini is working",
+            )
+
+            st.success("Gemini connection succeeded!")
+            st.write(response.text)
+
+        except Exception as e:
+            st.error(f"{type(e).__name__}: {e}")
+
