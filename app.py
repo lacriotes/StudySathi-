@@ -87,10 +87,11 @@ def get_api_key():
         return st.secrets.get("GEMINI_API_KEY", "") or os.getenv("GEMINI_API_KEY", "")
     except Exception:
         return os.getenv("GEMINI_API_KEY", "")
-
-
+        
+        
 def generate_with_gemini(prompt: str):
     api_key = get_api_key()
+
     if not api_key:
         return None, "No Gemini API key configured; using retrieval-only mode."
 
