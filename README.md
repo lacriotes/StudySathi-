@@ -1,57 +1,106 @@
-# StudySathi AI
+# Study Sathi AI 📚
 
-An independent student-built study assistant prototype. Upload text-based PDF notes, ask questions, retrieve relevant passages, summarize notes, and create study prompts.
+**An AI-powered study assistant to help students learn from their own study materials.**
 
-## Features
-- PDF text extraction with `pypdf`
-- Text chunking and keyword-based retrieval with TF-IDF and cosine similarity
-- Optional grounded answer generation using the Gemini API
-- Extractive-summary fallback if no API key is configured
-- Simple flashcard prompts and Streamlit interface
-- Explicit source inspection and limitations
+## About the Project
 
-## Run locally
-1. Install Python 3.10+.
-2. Open a terminal in this folder.
-3. Install dependencies:
+Study Sathi AI is a small project I started to explore how AI can be used to make studying easier for students.
+
+The idea is simple: students often have to go through long PDFs and notes to find the information they need. I wanted to build a tool where students can upload their study materials and get help understanding them without having to search through every page manually.
+
+This project is still in its early stage, and I am working on improving it as I learn more about Python and AI.
+
+## What it can do
+
+- **Upload PDFs:** Add your study materials in PDF format.
+- **Find relevant information:** Search through the uploaded content to find passages related to a question.
+- **Show source passages:** See the parts of the document that are relevant to your query.
+- **View similarity scores:** Get an idea of how closely the retrieved passages match your question.
+- **Summaries and flashcard prompts:** Use the available features to make revision easier.
+- **AI-generated answers:** The project includes an optional Google Gemini integration, which I am still working on.
+
+## How it works
+
+The project uses Python and Streamlit for the application, along with text extraction and TF-IDF-based retrieval to find relevant parts of uploaded documents.
+
+When a student asks a question, the application searches the document for passages that match the question. It can then show the relevant text to help the student find the information they need.
+
+I have also tried integrating Google Gemini to make the answers more useful and conversational. However, that integration is not fully working yet, so the project currently relies on document retrieval and fallback behaviour when AI generation is unavailable.
+
+## Technologies Used
+
+- **Python** — Main programming language
+- **Streamlit** — Web application interface
+- **TF-IDF** — Finding relevant passages in documents
+- **PDF text extraction** — Reading uploaded study materials
+- **Google Gemini API** — Optional AI-generated responses (still being worked on)
+- **Git and GitHub** — Version control and project hosting
+
+## Current Status
+
+Study Sathi AI is currently a **working prototype**, not a finished product.
+
+The basic idea of uploading PDFs and retrieving relevant passages is implemented. I have also worked on features to support summaries and flashcard-style revision.
+
+The main limitation right now is the Gemini integration. I am getting a client error when trying to generate AI responses, and I have not confirmed the exact cause yet. It could be related to the API key, model access, quota, or API configuration, so I still need to investigate it.
+
+Until that is resolved, the project should not be considered a fully working AI chatbot. The document retrieval part can still be useful on its own.
+
+## Running the Project Locally
+
+If you want to try the project on your computer:
+
+1. Clone this repository:
+
+   ```bash
+   git clone <your-repository-url>
+   ```
+
+2. Open the project folder:
+
+   ```bash
+   cd <repository-folder>
+   ```
+
+3. Install the required dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
-4. Start the app:
+
+4. Start the Streamlit application:
+
    ```bash
    streamlit run app.py
    ```
-5. Open the local URL shown in your terminal.
 
-The app works in retrieval-only mode without an API key. To enable generated answers, create a Gemini API key from Google AI Studio and set an environment variable named `GEMINI_API_KEY`. Never commit your key to GitHub.
+These commands assume the repository contains `requirements.txt` and the main application file is named `app.py`. Change the command if your actual filenames are different.
 
-## Deploy publicly on Streamlit Community Cloud
-1. Create a GitHub repository and upload `app.py`, `requirements.txt`, and `README.md`.
-2. Sign in to Streamlit Community Cloud using GitHub.
-3. Choose **Create app**, select the repository and branch, and set the main file path to `app.py`.
-4. Deploy. The first build may take a few minutes.
-5. Optional: in your app's **Settings → Secrets**, add:
-   ```toml
-   GEMINI_API_KEY = "paste-your-own-key-here"
-   ```
-6. Reboot the app after changing secrets.
+If you want to test Gemini features, you will also need a valid API key and the configuration expected by the application. Keep your API key private and never commit it to GitHub.
 
-Provider quotas, eligibility, model availability, and free-tier limits may change. Check the current terms before relying on an API in a public demo.
+## What I Want to Improve Next
 
-## Important limitations
-- Scanned/image-only PDFs are not OCR-processed.
-- TF-IDF retrieval is keyword-based and may miss related passages.
-- Generated answers can be incorrect even when source excerpts are provided.
-- The app is a learning prototype; it should not be used as an authority for high-stakes advice.
-- Avoid uploading confidential or copyrighted materials without permission.
+- Fix the Gemini API integration.
+- Improve the quality of answers generated from uploaded documents.
+- Make summaries and flashcards more useful for revision.
+- Improve error handling and the overall user interface.
+- Test the application with different PDFs and questions.
+- Make the project more reliable and easier for other students to use.
 
-## Evaluation plan
-Before presenting this as a portfolio project, test with at least 15–20 questions:
-- questions answered clearly by the document
-- questions with partially relevant information
-- questions absent from the notes
+## What I Learned
 
-Record whether the correct passage appears in the top results and note failure cases. Do not claim performance figures you have not measured.
+Building this project has helped me understand how document retrieval works, how to build a simple application with Streamlit, and how to connect an application to an AI API.
 
-## Attribution
-This is an independent educational project using open-source Python libraries. It is inspired by the general category of study-assistant tools and does not use another product's branding or proprietary code.
+I also learned that integrating an AI model is not always as simple as calling an API. Configuration, API access, error handling, and testing are important parts of building a working application.
+
+I took some help from AI tools while learning, understanding errors, and working through implementation problems. I am still learning and improving the project step by step.
+
+## Note
+
+This is an educational project that I am building as a learning experience. It may contain bugs, and some features are still under development.
+
+The goal is to keep learning, improve the prototype, and eventually make Study Sathi AI a useful study tool for students.
+
+---
+
+**Made as a learning project by a student, with the goal of making studying a little easier.**
